@@ -1,7 +1,7 @@
 import React from 'react';
 import { ScrollView, View, Text, StyleSheet } from 'react-native';
 
-// Étape 3 : Définition du type TypeScript pour les étudiants
+
 type Etudiant = {
   id: string;
   nom: string;
@@ -9,7 +9,6 @@ type Etudiant = {
   note: number;
 };
 
-// Tableau de données initiales des 4 étudiants
 const etudiants: Etudiant[] = [
   { id: 'e1', nom: 'Amine', filiere: 'IAIL S5', note: 14 },
   { id: 'e2', nom: 'Sara', filiere: 'IAIL S5', note: 9 },
@@ -19,7 +18,7 @@ const etudiants: Etudiant[] = [
 
 type BadgeProps = { note: number };
 
-// Étape 5 : Composant réutilisable pour le Badge de statut (Admis / Ajourné)
+
 function BadgeStatut({ note }: BadgeProps) {
   const admis = note >= 10;
   return (
@@ -31,7 +30,7 @@ function BadgeStatut({ note }: BadgeProps) {
 
 type CarteProps = { etudiant: Etudiant };
 
-// Étape 6 : Composant réutilisable pour la Carte de l'étudiant
+
 function CarteEtudiant({ etudiant }: CarteProps) {
   const { nom, filiere, note } = etudiant; // Déstructuration
   return (
@@ -46,9 +45,9 @@ function CarteEtudiant({ etudiant }: CarteProps) {
   );
 }
 
-// Étape 8, 9 & 10 : Composant principal de l'application
+
 export default function App() {
-  // Calculs statistiques automatiques
+  
   const nombreAdmis = etudiants.filter(e => e.note >= 10).length;
   const total = etudiants.reduce((somme, e) => somme + e.note, 0);
   const moyenne = (total / etudiants.length).toFixed(1).replace('.', ',');
@@ -58,13 +57,13 @@ export default function App() {
       <Text style={styles.titre}>CampusCards</Text>
       <Text style={styles.sousTitre}>IAIL S5</Text>
 
-      {/* Bloc Résumé */}
+    
       <View style={styles.resume}>
         <Text style={styles.texteResume}>Admis: {nombreAdmis} / {etudiants.length}</Text>
         <Text style={styles.texteResume}>Moyenne: {moyenne}/20</Text>
       </View>
 
-      {/* Affichage de la liste des cartes avec map() */}
+     
       {etudiants.map(etudiant => (
         <CarteEtudiant key={etudiant.id} etudiant={etudiant} />
       ))}
@@ -72,7 +71,6 @@ export default function App() {
   );
 }
 
-// Étape 7 : Styles de l'application (StyleSheet)
 const styles = StyleSheet.create({
   page: { 
     paddingTop: 56, 
